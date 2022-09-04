@@ -1,0 +1,17 @@
+
+const b = 30 // limite
+const c = 2 // intervalo
+
+const d = []
+
+for (let i = 0; i < b; i += c) {
+ d.push(i)
+}
+
+const e = d.join(' > ')
+
+console.log(e)
+/*
+Output:
+0 > 2 > 4 > 6 > 8 > 10 > 12 > 14 > 16 > 18 > 20 > 22 > 24 > 26 > 28
+*/
