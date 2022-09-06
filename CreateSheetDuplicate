@@ -1,0 +1,28 @@
+/*
+Script para duplicação 
+automática de abas dentro 
+do Planilhas Google
+
+Selecione o texto abaixo, 
+copie e cole no seu script.
+*/
+
+function GerarFichasAlunos() {
+  if(Browser.msgBox('Atenção','Confirma a duplicação da aba atual?',Browser.Buttons.YES_NO)=='yes'){
+    var novaAba,idNovaAba,jaExiste,novoNome;
+    var planilha = SpreadsheetApp.getActiveSpreadsheet();
+    var aba = planilha.getActiveSheet();
+    var qtd = Browser.inputBox('Atenção','Informe a quantidade de cópias',Browser.Buttons.OK);
+    for(var i=0;i<qtd;i++){
+      novoNome = (i+1);
+      jaExiste = planilha.getSheetByName(novoNome);
+      if(jaExiste){
+        planilha.deleteSheet(jaExiste);
+      }
+      novaAba = aba.copyTo(planilha);
+      novaAba.setName(novoNome);
+      idNovaAba = novaAba.getSheetId();
+      novaAba.getRange('E3').setFormula('=HYPERLINK("#gid='+idNovaAba+'&range=E3";"Monitor")');
+    }
+  }
+}
