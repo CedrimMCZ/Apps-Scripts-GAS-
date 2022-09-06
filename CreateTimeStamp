@@ -1,0 +1,24 @@
+function onEdit(e) {
+  if (!e) throw "do not run from editor";
+
+  checkDate(e);
+  completedDate(e);
+}
+
+function checkDate(e) {
+  const src = e.source.getActiveSheet();
+  const r = e.range;
+
+  if (r.columnStart != 9 || src.getName() != 'SF Delivery Tracker') return;
+
+  r.offset(0,1).setValue(new Date()).setNumberFormat("MM/dd/yyyy hh:mm");
+}
+
+function completedDate(e) {
+  const src = e.source.getActiveSheet();
+  const r = e.range;
+
+  if (r.columnStart != 6 || e.value != 'Completed' || src.getName() != 'SF Delivery Tracker') return;
+
+  r.offset(0,5).setValue(new Date()).setNumberFormat("MM/dd/yyyy hh:mm");
+}
