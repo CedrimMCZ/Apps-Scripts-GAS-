@@ -1,0 +1,121 @@
+function carimbo() {
+
+
+  let GATILHO; // Coluna que ativa o carimbo quando alterada [G: VENCIMENTO]
+  let RECEBE;  // Coluna que que recebe o carimbo quando GATILHO é acionado [R: CARIMBO]
+  const NOW  = Utilities.formatDate(new Date(), "GMT-0300", "yyMMddHHmmss"); // Retorna data personalizada.
+
+  let JANEIRO    = "JAN22"; // Aba do mês de janeiro.
+  let FEVEREIRO  = "FEV22"; // Aba do mês de fevereiro.
+  let MARCO      = "MAR22"; // Aba do mês de março.
+  let ABRIL      = "ABR22"; // Aba do mês de abril.
+  let MAIO       = "MAI22"; // Aba do mês de maio.
+  let JUNHO      = "JUN22"; // Aba do mês de junho.
+  let JULHO      = "JUL22"; // Aba do mês de julho.
+  let AGOSTO     = "AGO22"; // Aba do mês de agosto.
+  let SETEMBRO   = "SET22"; // Aba do mês de setembro.
+  let OUTUBRO    = "OUT22"; // Aba do mês de outubro.
+  let NOVEMBRO   = "NOV22"; // Aba do mês de novembro.
+  let DEZEMBRO   = "DEZ22"; // Aba do mês de dezembro.
+
+  let GAT =  7; // Define qual é o número da coluna na planilha que ativa GATILHO. 
+  let REC = 18; // Define qual é o número da coluna na planilha que acontece o carimbo.
+  
+  let VAZIO      = ""; // Representa algo vazio. Se for vazio, carimba, se não, não faz nada.
+
+  let aba             = SpreadsheetApp.getActiveSheet(); // Variável para ativar a aba atual.
+  let linhaEditada    = aba.getActiveCell().getRow();    // Verifica a linha do GATILHO.
+  let colunaEditada   = aba.getActiveCell().getColumn(); // Verifica a coluna do GATILHO.
+
+  switch(aba.getSheetName()){ // Aplica os gatilhos e recebimentos em todas as abas cadastradas, neste caso, meses.
+
+
+    case JANEIRO:{ 
+      GATILHO    =  GAT; // Aplica GATILHO à variável GAT que tem, lá em cima, o número da coluna na aba JAN22.
+      RECEBE     =  REC; // Aplica RECEBE à variável REC que tem, lá em cima, o número da coluna na aba JAN22.
+     }
+    
+    case FEVEREIRO:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    case MARCO:{ 
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    
+    case ABRIL:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+
+    case MAIO:{ 
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    
+    case JUNHO:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+
+    case JULHO:{ 
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    
+    case AGOSTO:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+
+    case SETEMBRO:{ 
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    
+    case OUTUBRO:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+
+    case NOVEMBRO:{ 
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+    
+    case DEZEMBRO:{
+      GATILHO    =  GAT;
+      RECEBE     =  REC;
+      break;
+     }
+
+
+    default:{
+      return;
+    }
+  }
+   
+  if( colunaEditada == GATILHO ){ // Compara (==) se GATILHO deve funcionar ou não.
+
+    if( aba.getRange(linhaEditada, colunaEditada).getValue() != VAZIO){ // Se a célula do GATILHO for diferente (!=) de vazio...
+      aba.getRange(linhaEditada, RECEBE).setValue(NOW); // ...então imprima (coloque o valor) NOW lá na célula da coluna que recebe...
+    
+    }else{
+      aba.getRange(linhaEditada, RECEBE).setValue(""); // ...se não, não faça nada ("").
+    
+    }
+    
+  }
+ 
+}
