@@ -1,0 +1,10 @@
+function countOcurrences() {
+
+var lin=ss.getLastRow();
+var dd=ss.getRange(2,19,lin,1).getValues();
+var ddf=dd.filter(i => i!= false).sort().flat() //.length;
+
+var unique = Array.from(new Set(ddf));  
+var count = unique.map(val => ddf.filter(v => v === val).length) 
+
+}
